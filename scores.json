@@ -1,5 +1,13 @@
 {
- "blocks": [],
+ "blocks": [
+  {
+   "name": "PAVOL",
+   "score": 23450,
+   "lvl": "LVL 8",
+   "gh": "pavolbauer",
+   "date": "2026-08-14"
+  }
+ ],
  "muncher": [],
  "snake": [
   {
