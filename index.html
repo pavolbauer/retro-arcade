@@ -340,7 +340,7 @@ const INFO={
   breakout:'<b>◀ ▶</b> Paddle bewegen<br><b>A</b> Ball starten · mit Laser: <b>schießen</b>'
     +'<div class="sec">EXTRAS FANGEN</div><b>L</b> Laser (10 s) · <b>W</b> breites Paddle (10 s)<br>'
     +'<b>E</b> Eisenkugel (8 s, durchschlägt alles) · <b>♥</b> Extra-Leben'
-    +'<div class="sec">STEINE</div>Weißer Rahmen = Panzerstein, braucht 2 Treffer.<br>Ball verloren = Extras weg. Ab Lvl 3 schrumpft das Paddle.'
+    +'<div class="sec">STEINE</div>Weißer Rahmen = Panzerstein, braucht 2 Treffer.<br>Ball verloren = Extras weg. Ab Lvl 3 schrumpft das Paddle.<br>8 Level-Muster, ab Lvl 9 zufällig gemischt.'
 };
 document.querySelectorAll('.cab .info').forEach(b=>{
   b.addEventListener('click',e=>{
@@ -701,12 +701,25 @@ GAMES.breakout=function(cont){
     bricks=[];
     const cols=8, rows=5, bw=(W-40)/cols, bh=16;
     const colors=['#ff3f3f','#ff8c1a','#ffd319','#3be13b','#2de2e6'];
-    const pat=(lvl-1)%4; /* 0 Wand, 1 Schachbrett, 2 Pyramide, 3 Lücken */
+    const NPAT=8;
+    /* Lvl 1-8 feste Reihenfolge, ab Lvl 9 zufälliges Muster */
+    const pat=(lvl<=NPAT)?(lvl-1):Math.floor(Math.random()*NPAT);
     for(let r=0;r<rows;r++)for(let ci=0;ci<cols;ci++){
-      if(pat===1 && (r+ci)%2) continue;
-      if(pat===2){ const off=Math.min(3,rows-1-r); if(ci<off||ci>=cols-off) continue; }
-      if(pat===3 && (r*3+ci)%5===0) continue;
-      const hp=(lvl>=2 && r<2)?2:1; /* obere Reihen brauchen 2 Treffer */
+      let keep=true, armor=false;
+      switch(pat){
+        case 0: break;                                     /* volle Wand */
+        case 1: keep=((r+ci)%2)===0; break;                /* Schachbrett */
+        case 2: { const off=Math.min(3,rows-1-r);          /* Pyramide */
+                  keep=!(ci<off||ci>=cols-off); break; }
+        case 3: keep=((r*3+ci)%5)!==0; break;              /* Lücken */
+        case 4: { const off=Math.min(3,r);                 /* hängende Pyramide */
+                  keep=!(ci<off||ci>=cols-off); break; }
+        case 5: keep=(((ci+r)%4)<2); break;                /* Diagonalstreifen */
+        case 6: armor=(r===0||ci===0||ci===cols-1); break; /* Festung: Panzer-Rand */
+        case 7: keep=!(ci===3||ci===4)||r===0; break;      /* Doppelwand mit Gasse */
+      }
+      if(!keep) continue;
+      const hp=(armor||(lvl>=2&&r<2))?2:1;
       bricks.push({x:20+ci*bw, y:60+r*(bh+4), w:bw-4, h:bh, col:colors[r], pts:(rows-r)*10, hp});
     }
   }
@@ -827,7 +840,7 @@ GAMES.breakout=function(cont){
           }
         }
         if(!bricks.length){
-          lvl++; score+=100; speed+=40;
+          lvl++; score+=100; speed=Math.min(speed+28,480);
           drops=[]; shots=[]; laserT=0; wideT=0; ironT=0; PW=basePW;
           buildBricks();
           ball={x:px+PW/2,y:H-90,vx:0,vy:0,stuck:true};
