@@ -4,6 +4,13 @@
  "snake": [],
  "breakout": [
   {
+   "name": "ANDREJ",
+   "score": 1135,
+   "lvl": "LVL 1",
+   "gh": "pavolbauer",
+   "date": "2026-08-14"
+  },
+  {
    "name": "PAVOL",
    "score": 790,
    "lvl": "LVL 1",
