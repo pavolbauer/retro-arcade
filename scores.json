@@ -1,7 +1,15 @@
 {
  "blocks": [],
  "muncher": [],
- "snake": [],
+ "snake": [
+  {
+   "name": "PAVOL",
+   "score": 370,
+   "lvl": "LEN 40",
+   "gh": "pavolbauer",
+   "date": "2026-08-14"
+  }
+ ],
  "breakout": [
   {
    "name": "ANDREJ",
