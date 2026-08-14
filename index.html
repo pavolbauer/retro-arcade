@@ -331,7 +331,7 @@ document.querySelectorAll('.cab').forEach(c=>c.addEventListener('click',()=>star
 /* Steuerungs-Infos */
 const INFO={
   blocks:'<b>◀ ▶</b> Stein bewegen<br><b>▲</b> drehen<br><b>▼</b> Soft Drop (+1/Feld)<br><b>A</b> Hard Drop (+2/Feld)'
-    +'<div class="sec">PUNKTE</div>1 / 2 / 3 / 4 Reihen = <b>100 / 300 / 500 / 800</b> × Level.<br>Alle 10 Reihen steigt das Tempo.',
+    +'<div class="sec">PUNKTE</div>1 / 2 / 3 / 4 Reihen = <b>100 / 300 / 500 / 800</b> × Level.<br>Alle 6 Reihen steigt das Tempo.',
   muncher:'<b>◀ ▲ ▼ ▶</b> Richtung (oder auf dem Feld wischen)'
     +'<div class="sec">REGELN</div>Punkt <b>+10</b> · Power-Pille <b>+50</b>: Geister 6 s jagbar (<b>+200</b>).<br>'
     +'Seitliche <b>Portale</b> führen auf die andere Seite.<br>3 Leben · Level leer = <b>+500</b>, Geister werden schneller.',
@@ -549,7 +549,7 @@ GAMES.blocks=function(cont){
     for(let y=ROWS-1;y>=0;y--){
       if(grid[y].every(c=>c)){ grid.splice(y,1); grid.unshift(Array(COLS).fill(null)); cleared++; y++; }
     }
-    if(cleared){ score+=[0,100,300,500,800][cleared]*level; lines+=cleared; level=1+Math.floor(lines/10); }
+    if(cleared){ score+=[0,100,300,500,800][cleared]*level; lines+=cleared; level=1+Math.floor(lines/6); }
     spawn();
   }
   function tryRot(){
@@ -584,7 +584,7 @@ GAMES.blocks=function(cont){
         }
       }
       /* Fallen */
-      const iv=Math.max(80,650-(level-1)*60);
+      const iv=Math.max(75,560-(level-1)*60);
       fallT+=dt;
       if(held.down){ softT+=dt; if(softT>40){softT=0; if(!hit(cur.m,cur.x,cur.y+1)){cur.y++; score++; fallT=0;}} }
       if(fallT>iv){ fallT=0;
