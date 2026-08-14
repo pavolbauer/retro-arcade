@@ -12,6 +12,13 @@
  ],
  "breakout": [
   {
+   "name": "PAVOL",
+   "score": 5500,
+   "lvl": "LVL 6",
+   "gh": "pavolbauer",
+   "date": "2026-08-14"
+  },
+  {
    "name": "ANDREJ",
    "score": 1135,
    "lvl": "LVL 1",
