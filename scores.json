@@ -8,7 +8,15 @@
    "date": "2026-08-14"
   }
  ],
- "muncher": [],
+ "muncher": [
+  {
+   "name": "UNESCO",
+   "score": 1140,
+   "lvl": "LVL 1",
+   "gh": "pavolbauer",
+   "date": "2026-08-15"
+  }
+ ],
  "snake": [
   {
    "name": "PAVOL",
