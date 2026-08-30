@@ -399,6 +399,14 @@ Object.keys(GAME_NAMES).forEach(g=>{
   if(!Array.isArray(hsTables[g])) hsTables[g]=[];
   if(hsTables[g].length) best[g]=Math.max(best[g],hsTables[g][0].score);
 });
+/* Beim Start globale Bestwerte laden und Menükarten aktualisieren */
+(async()=>{
+  const g=await fetchGlobal();
+  if(g) Object.keys(GAME_NAMES).forEach(k=>{
+    if(Array.isArray(g[k])&&g[k].length) best[k]=Math.max(best[k],...g[k].map(e=>e.score||0));
+  });
+  document.querySelectorAll('[data-hs]').forEach(b=>b.textContent=best[b.dataset.hs]);
+})();
 function saveHS(){ try{ localStorage.setItem('arcade_hs',JSON.stringify(hsTables)); }catch(e){} }
 function getPlayerName(){ try{ return localStorage.getItem('arcade_name')||''; }catch(e){ return ''; } }
 function setPlayerName(n){ try{ localStorage.setItem('arcade_name',n); }catch(e){} }
