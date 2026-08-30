@@ -22,7 +22,7 @@ jobs:
               await github.rest.issues.update({ ...context.repo, issue_number: nr, state: 'closed' });
             };
             const t = context.payload.issue.title;
-            const m = t.match(/^\[SCORE\]\s*(blocks|muncher|snake|breakout)\|(\d{1,7})\|([A-Za-z0-9 ]{0,10})\|(.{1,12})$/);
+            const m = t.match(/^\[SCORE\]\s*(blocks|muncher|snake|breakoutx|breakout)\|(\d{1,7})\|([A-Za-z0-9 ]{0,10})\|(.{1,12})$/);
             if (!m) { await close('Format ungueltig - Eintrag ignoriert.'); return; }
             const [, game, scoreS, lvlRaw, nameRaw] = m;
             const score = parseInt(scoreS, 10);
