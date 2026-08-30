@@ -62,5 +62,14 @@
    "gh": "pavolbauer",
    "date": "2026-08-14"
   }
- ], "breakoutx": []
+ ],
+ "breakoutx": [
+  {
+   "name": "PAVOL",
+   "score": 51930,
+   "lvl": "LVL 10",
+   "gh": "pavolbauer",
+   "date": "2026-08-30"
+  }
+ ]
 }
