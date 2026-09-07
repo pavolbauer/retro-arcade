@@ -20,6 +20,13 @@
  "snake": [
   {
    "name": "CORI",
+   "score": 720,
+   "lvl": "LEN 75",
+   "gh": "erdedfaargol",
+   "date": "2026-09-07"
+  },
+  {
+   "name": "CORI",
    "score": 600,
    "lvl": "LEN 63",
    "gh": "erdedfaargol",
