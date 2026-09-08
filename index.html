@@ -1340,15 +1340,15 @@ GAMES.breakoutx=function(cont){
     const nr=Math.floor(lvl/5);          /* 1., 2., 3. Boss ... */
     const type=(nr-1)%3;
     if(type===0){
-      const hp=12+lvl*4;
+      const hp=10+lvl*3;
       boss={type,name:'WÄCHTER',t:0,turn:0,fireT:1500,maxHp:hp,
         parts:[{x:W/2-65,y:72,w:130,h:36,hp,vx:70+lvl*4}]};
     } else if(type===1){
-      const hp=10+lvl*3;
+      const hp=8+lvl*2;
       boss={type,name:'AUGE',t:0,turn:0,fireT:1400,maxHp:hp,
         parts:[{x:W/2-45,y:78,w:90,h:40,hp}]};
     } else {
-      const hp=8+lvl*2;
+      const hp=6+Math.round(lvl*1.5);
       boss={type,name:'ZWILLINGE',t:0,turn:0,fireT:1100,maxHp:hp*2,
         parts:[{x:40,y:78,w:80,h:30,hp},{x:W-120,y:78,w:80,h:30,hp}]};
     }
@@ -1581,7 +1581,7 @@ GAMES.breakoutx=function(cont){
           if(p){
             if(ball.y<p.y+p.h/2){ ball.y=p.y-BR; ball.vy=-Math.abs(ball.vy); }
             else { ball.y=p.y+p.h+BR; ball.vy=Math.abs(ball.vy); }
-            hitPart(p,ironT>0?3:1);
+            hitPart(p,ironT>0?5:1);
             if(!boss) continue;
           }
         }
